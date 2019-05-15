@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.pyplot as plt #library used for plotting
 import datetime
 
@@ -9,11 +10,13 @@ timeXVals = []
 cwndYVals = []
 buffYVals = []
 
+prevTime = 0
+
 #open file and plot cwnd and send buffer occupancy versus time
 with open(fileToOpen) as f:
     for idx, line in enumerate(f):
         # lineVals = line.strip().split(",")
-        lineValues.line.strip().split(",")
+        lineValues = line.strip().split(",")
 
         #print(lineValues[idx])
 
@@ -23,20 +26,28 @@ with open(fileToOpen) as f:
         # [8] - current cwnd
         # [21] - # of bytes in socket send buffer 
 
-        if idx < 2:
+        #skip commmented out lines
+        if lineValues[0].startswith('#'):
             continue
 
-        if lineValues[3] == ipAddresses[0]
-        timeXVals.append(lineValues[2])
-        cwndYVals.append(lineValues[8])
-        buffYVals.append(lineValues[21])
-        
-        if not len(lineValues[idx]) < 2:
-            if lineValues[idx][3] in ipAddresses and lineValues[idx][5] in ipAddresses:
-                plotIdx = len(timeXVals)
-                timeXVals.append(lineValues[plotIdx][2])    #time
-                cwndYVals.append(lineValues[plotIdx][8])    #cwnd
-                buffYVals.append(lineValues[plotIdx][21])   #buffer
-                
+        if lineValues[0] == 'o' and lineValues[3] == ipAddresses[0]:
+            if idx == 1:
+                prevTime = float(lineValues[2])
+                timeXVals.append(0)
+            else:
+                timeXVals.append(float(lineValues[2]) - prevTime)
+            cwndYVals.append(int(lineValues[8]))
+            buffYVals.append(int(lineValues[21]))
+
+print(timeXVals)
+
+# Titles/labels
+plt.title('Title')
+
+# make x axis nice
+plt.gcf().autofmt_xdate()
+
+# plot graphs
 plt.plot(timeXVals, cwndYVals, '-')
+plt.plot(timeXVals, buffYVals, '-')
 plt.show()
