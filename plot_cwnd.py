@@ -4,7 +4,7 @@ import datetime
 
 filesToOpen = ['a-vegas.log', 'c-vegas.log']
 ipAddresses = ['172.16.11.67', '172.16.10.65']
-title = 'CUBIC - cwnd over time'
+title = 'Vegas - cwnd over time'
 
 timeXVals = []
 cwndYVals = []
@@ -32,7 +32,7 @@ for index, filePath in enumerate(filesToOpen):
             if lineValues[0].startswith('#'):
                 continue
             
-            if lineValues[0] == 'o' and lineValues[3] == ipAddresses[0]:
+            if lineValues[0] == 'o' and lineValues[3] == ipAddresses[0] and lineValues[5] == ipAddresses[1]:
                 if startTime == 0.0:
                     startTime = float(lineValues[2])
 
@@ -43,7 +43,7 @@ for index, filePath in enumerate(filesToOpen):
 # Titles/labels
 plt.title(title)
 plt.xlabel('Time')
-plt.ylabel('RTT (secs)')
+plt.ylabel('cwnd (bytes)')
 
 #print(startTime)
 

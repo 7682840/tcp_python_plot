@@ -2,9 +2,9 @@ import matplotlib
 import matplotlib.pyplot as plt #library used for plotting
 import datetime
 
-filesToOpen = ['b-vegas.log', 'c-vegas.log']
+filesToOpen = ['b-cubic.log', 'c-cubic.log']
 ipAddresses = ['172.16.11.67', '172.16.10.65']
-title = 'Vegas - smoothed RTT over time'
+title = 'CUBIC - smoothed RTT over time'
 
 timeXVals = []
 RTTYVals = []

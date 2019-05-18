@@ -2,8 +2,8 @@ import matplotlib
 import matplotlib.pyplot as plt #library used for plotting
 import datetime
 
-fileToOpen = 'a-cubic.log'
-title = 'CUBIC - cwnd and sender buffer occupancy over time - Scenario A'
+fileToOpen = 'a-vegas.log'
+title = 'Vegas - cwnd and sender buffer occupancy over time - Scenario A'
 ipAddresses = ['172.16.11.67', '172.16.10.65']
 
 lineValues = []
